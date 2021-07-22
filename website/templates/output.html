@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<title>File Stats </title>
+<center>
+    <h1> File Stats</h1>
+    <h2> Size of "{{res[0]}}": {{res[1][0]}} {{res[1][1]}}</h2>
+    <h2> Total number of words: {{res[2]}} </h2>
+    <h2> Total number of unique words: {{res[3]}} </h2>
+    <br>
+</center>
+
+<div class="float-container">
+    <div class="tables-wrapper">
+        <h3> Unique Word Stats</h3>
+        <div class="float-child"
+            style="height:300px;width:500px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+            <style>
+                .tables-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    width: fit-content;
+                    text-align: center;
+                }
+
+                .float-container {
+                    border: 3px solid #fff;
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    text-align: center;
+                    place-content: space-evenly;
+                }
+
+                .float-child {
+                    width: 100%;
+                    padding: 20px;
+                    border: 2px solid red;
+                }
+
+                table {
+                    width: 100%;
+                }
+
+                table,
+                th,
+                td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+
+                th,
+                td {
+                    padding: 15px;
+                    text-align: left;
+                }
+
+                #t01 tr:nth-child(even) {
+                    background-color: #eee;
+                }
+
+                #t01 tr:nth-child(odd) {
+                    background-color: #fff;
+                }
+
+                #t01 th {
+                    background-color: black;
+                    color: white;
+                }
+            </style>
+
+            <table id="t01" align=left>
+                <tr>
+                    <th>Word</th>
+                    <th>Count</th>
+                </tr>
+                {% for key, value in res[4].items() %}
+                <tr>
+                    <td> {{ key }} </td>
+                    <td> {{ value }} </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div>
+        {% if res[3] < 25 %} <h3> Top {{res[3]}} most common words</h3>
+            {% endif %}
+            {% if res[3] >=25 %}
+            <h3> Top 25 most common words</h3>
+            {%endif%}
+            <div class="float-child"
+                style="height:300px;width:500px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+                <style>
+                    table {
+                        width: 100%;
+                    }
+
+                    table,
+                    th,
+                    td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                    }
+
+                    th,
+                    td {
+                        padding: 15px;
+                        text-align: left;
+                    }
+
+                    #t02 tr:nth-child(even) {
+                        background-color: #eee;
+                    }
+
+                    #t02 tr:nth-child(odd) {
+                        background-color: #fff;
+                    }
+
+                    #t02 th {
+                        background-color: black;
+                        color: white;
+                    }
+                </style>
+
+                <table id="t02" align=right>
+                    <tr>
+                        <th>Word</th>
+                        <th>Count</th>
+                    </tr>
+                    {% if res[3] < 25 %} 
+                    {% for key, value in res[4].most_common(res[3]) %}
+                    <tr>
+                        <td> {{ key }} </td>
+                        <td> {{ value }} </td>
+                    </tr>  
+                    {% endfor %}                  
+                    {% endif %}
+
+                    {% if res[3] >=25 %}                    
+                    {%endif%}
+                    {% for key, value in res[4].most_common(25) %}
+                    <tr>
+                        <td> {{ key }} </td>
+                        <td> {{ value }} </td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+    </div>
+</div>
+
+</html>

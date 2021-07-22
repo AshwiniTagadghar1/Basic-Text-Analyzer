@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}Login{% endblock%}
+{%block content %}
+This is the login page
+{% for i in range(12)%}
+{{i}}
+{% endfor %}
+{{text}}
+
+<form method="POST">
+    <h3 align="center">Sign Up</h3>
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+        />
+    
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+            type="password"
+            class="form-control"
+            id="password1"
+            name="password1"
+            placeholder="Enter password"
+        />
+    
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Sumbit</button>
+
+</form>
+
+{% endblock %}

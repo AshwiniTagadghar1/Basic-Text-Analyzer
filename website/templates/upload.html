@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>File Upload</title>
+  <style>
+    .parentCardWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 18%;
+    }
+
+
+    .uploadFileCard {
+      background-color: darkcyan;
+      padding: 50px 70px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parentCardWrapper">
+    <div class="uploadFileCard">
+      <h1>File Upload</h1>
+      <div>
+        <form method="POST" action="http://localhost:5000/uploader" enctype="multipart/form-data">
+          <p><input type="file" name="file" accept=".txt"></p>
+          <p><input type="submit" value="Submit"></p>
+          {% for mesg in get_flashed_messages() %}
+          <h1>{{ mesg }}</h1>
+          {% endfor %}
+
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
